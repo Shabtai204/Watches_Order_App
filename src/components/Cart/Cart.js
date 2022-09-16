@@ -79,17 +79,17 @@ const Cart = (props) => {
         <span>Total Amount</span>
         <span>{totalAmount}</span>
       </div>
-      {!hasItems && (
+      {isCheckout && hasItems && (
+        <Checkout onConfirm={sumbitOrderHandler} onCancel={props.onClose} />
+      )}
+      {!isCheckout && modalActions}
+      {isCheckout && !hasItems && (
         <div className={classes.actions}>
           <button className={classes.button} onClick={props.onClose}>
             Close
           </button>
         </div>
       )}
-      {isCheckout && hasItems && (
-        <Checkout onConfirm={sumbitOrderHandler} onCancel={props.onClose} />
-      )}
-      {!isCheckout && modalActions}
     </React.Fragment>
   );
 
